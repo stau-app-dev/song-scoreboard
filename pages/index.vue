@@ -12,8 +12,10 @@
         300 votes) will be selected for an upcoming LIVE performance.
       </h4>
       <div class="flex-1 py-3 text-center">
-        <Scoreboard />
-        <h5 class="text-2xl font-extralight mt-6 italic">(Live Scoreboard)</h5>
+        <Scoreboard :songs="songs" />
+        <h5 class="text-2xl font-extralight mt-6 italic">
+          (Live Scoreboard - updated every 30 seconds)
+        </h5>
       </div>
     </div>
     <Footer />
@@ -26,7 +28,13 @@ export default {
   data() {
     return {
       windowHeight: window.innerHeight,
+      songs: [],
     };
+  },
+  async fetch() {
+    const response = await this.$axios.get('/getSongs');
+    const songs = response.data.data;
+    this.songs = songs.slice(0, 5);
   },
   computed: {
     isFullscreen() {
@@ -39,6 +47,9 @@ export default {
   mounted() {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
+      setInterval(() => {
+        this.$fetch();
+      }, 30000);
     });
   },
   beforeDestroy() {

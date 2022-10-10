@@ -9,55 +9,19 @@
         </tr>
       </thead>
       <tbody class="text-xl">
-        <tr class="border-b border-red-700 bg-red-900">
+        <tr
+          v-for="(song, index) in songs"
+          :key="`song-${index}`"
+          class="border-b border-red-700"
+        >
           <th
             scope="row"
             class="whitespace-nowrap py-4 px-6 font-medium text-white"
           >
-            #1
+            #{{ index + 1 }}
           </th>
-          <td class="py-4 px-6 text-gray-100">Never Gonna Give You Up</td>
-          <td class="py-4 px-6 text-gray-100">399</td>
-        </tr>
-        <tr class="border-b border-red-700 bg-red-800">
-          <th
-            scope="row"
-            class="whitespace-nowrap py-4 px-6 font-medium text-white"
-          >
-            #2
-          </th>
-          <td class="py-4 px-6 text-gray-100">Baby</td>
-          <td class="py-4 px-6 text-gray-100">300</td>
-        </tr>
-        <tr class="border-b border-red-700 bg-red-900">
-          <th
-            scope="row"
-            class="whitespace-nowrap py-4 px-6 font-medium text-white"
-          >
-            #3
-          </th>
-          <td class="py-4 px-6 text-gray-100">Baby Shark</td>
-          <td class="py-4 px-6 text-gray-100">200</td>
-        </tr>
-        <tr class="border-b border-red-700 bg-red-800">
-          <th
-            scope="row"
-            class="whitespace-nowrap py-4 px-6 font-medium text-white"
-          >
-            #4
-          </th>
-          <td class="py-4 px-6 text-gray-100">Count on Me</td>
-          <td class="py-4 px-6 text-gray-100">143</td>
-        </tr>
-        <tr class="border-b border-red-700 bg-red-900">
-          <th
-            scope="row"
-            class="whitespace-nowrap py-4 px-6 font-medium text-white"
-          >
-            #5
-          </th>
-          <td class="py-4 px-6 text-gray-100">Take on Me</td>
-          <td class="py-4 px-6 text-gray-100">99</td>
+          <td class="py-4 px-6 text-gray-100">{{ song.name }}</td>
+          <td class="py-4 px-6 text-gray-100">{{ song.upvotes }}</td>
         </tr>
       </tbody>
     </table>
@@ -67,5 +31,23 @@
 <script>
 export default {
   name: 'ScoreboardComponent',
+  props: {
+    songs: {
+      type: Array,
+      required: true,
+    },
+  },
 };
 </script>
+
+<style lang="postcss" scoped>
+tbody {
+  tr:nth-child(even) {
+    @apply bg-red-800;
+  }
+
+  tr:nth-child(odd) {
+    @apply bg-red-900;
+  }
+}
+</style>
