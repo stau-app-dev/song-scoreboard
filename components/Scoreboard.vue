@@ -21,7 +21,7 @@
             #{{ index + 1 }}
           </th>
           <td class="py-4 px-6 text-gray-100">
-            {{ song.name }} by {{ song.artist }}
+            <span class="italic">{{ song.name }}</span> by {{ song.artist }}
           </td>
           <td class="py-4 px-6 text-gray-100">{{ song.upvotes }}</td>
         </tr>
