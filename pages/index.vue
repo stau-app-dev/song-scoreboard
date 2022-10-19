@@ -4,7 +4,7 @@
     <Header />
     <div class="flex flex-1 flex-col space-y-4 py-6 px-16">
       <h3 class="text-center text-4xl font-extralight">
-        Upvote songs on the school app!
+        LAST DAY to upvote songs on the school app!
       </h3>
       <h4 class="text-center text-3xl">
         The
